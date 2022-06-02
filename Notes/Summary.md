@@ -25,6 +25,7 @@ most of the time, using a linked list is doubly linked
 | Subtree             | tree made up of node and some decendents                                     |
 | edge                | pair of nodeswhere one is a parent of another                                |
 | path                | sequence of nodes that would lead from one to another                        |
+| forest              | a bunch of trees together, unconnected                                                                             |
 
 ## Traversals
 ![[Pasted image 20220602202802.png]]
@@ -49,6 +50,57 @@ this will be in ascending order in a binary tree
 ![[Inorder-traversal.gif]]
 
 ![[Pasted image 20220602204222.png]]
+
+to find an element within a binary search tree, you compare the value of the node to the value you are searching for, if it is more than, then go to the right, if it is less than then go to the left
+
+when inserting you do the same, and follow the path
+
+# Hash Functions
+Hash functions try to create a number as random as possible so it can insert it into an array with as little collision a possible. they wrap around using modulo. the array should be pretty big 
+
+linear chaining top, probing bottom
+![[Pasted image 20220602211654.png]]
+
+**in case of collision**
+- Seperate chaining is when you have a collision you add another value to the same position worst case is O(n) if everything is put in the same
+- linear probing is getting to the next empty spot to be inserted
+- cuckoo hashing
+
+# Graphs 
+
+| Term                        | Definition                                               |
+| --------------------------- | -------------------------------------------------------- |
+| endpoints                   | the vertexes the edges are connecting                    |
+| incident                    | the edges that are connected to a vertex                 |
+| adjacent vertexes/neighbour | vertexes that are connected to each other                |
+| degree                      | number of edges a vertex has                             |
+| parallel edges              | when there are 2 edges that connect to the same vertexes |
+| self loop                   | when it loops on itself                                  |
+| simple                      | no parallel or self loops                                                         |
+
+**directed graphs**
+
+| Term           | Definition                                                            |
+| -------------- | --------------------------------------------------------------------- |
+| Tail           | where the edge goes to (the point of the edge)                        |
+| Head           | where the edge starts                                                 |
+| Out-degree     | is # of edges out of a vertex                                         |
+| In-degree      | # of edges into a vertex                                              |
+| Parallel edges | share tail and head (have to have the arrows pointed at the same way) |
+
+## Implementation
+
+### Adjacency List
+
+
+### Adjacency Matrix
+
+
+## Searching Algorithms
+
+
+## Weighted Graphs
+
 
 # Greedy Algorithm
 
