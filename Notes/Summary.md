@@ -1,8 +1,54 @@
+# ADT
+Abstract data types are used to represent more a concept or an idea, with no regard for implementation
+
+Say, using a stack. a stack is an abstract type because it has the idea of popping and pushing. but it doesnt say how to implement it. because it can be implemented in many ways. like using arrays that change size, or it can use a linked list that tracks where the head is currently. 
+
+**A data structure** is a concrete representation of data, and this is from the point of view of an implementer, not a user
+
+most of the time, using a linked list is doubly linked
+
 # Trees
-## Sorting of verticies
+## Terminology
 
+- to make things easier, all the leaves will have 2 children that will be null
 
+| Term                | Description                                                                  |
+| ------------------- | ---------------------------------------------------------------------------- |
+| root                | the first node at the beginning of the tree                                  |
+| internal node       | nodes with at least one child                                                |
+| leaf/external nodes | node without children (or represented with both children as NULL)            |
+| ancestors           | the parents                                                                  |
+| descendants         | a child                                                                      |
+| depth of a node     | how far down the node is the number of ancestors it has not including itself |
+| level               | the set of nodes at a given depth                                            |
+| height of a tree    | the max depth                                                                |
+| Subtree             | tree made up of node and some decendents                                     |
+| edge                | pair of nodeswhere one is a parent of another                                |
+| path                | sequence of nodes that would lead from one to another                        |
 
+## Traversals
+![[Pasted image 20220602202802.png]]
+
+### Preorder Traversal Example
+keeps following a path to attempt to going to the left untill it cannot left anymore
+![[Preorder-traversal.gif]]
+**explores the left subtree first, then the right** 
+
+- keeps following a path to attempt to going to the left untill it cannot left anymore
+- in that case it would go back up to its parent and go to the right
+- in the case where there is no more to be traversed it would go all the way up
+
+### Postorder Traversal
+will always try to get the left most element if possible
+![[Postorder-traversal.gif]]
+
+### Inorder Traversal
+left, parent, right.
+this will be in ascending order in a binary tree
+
+![[Inorder-traversal.gif]]
+
+![[Pasted image 20220602204222.png]]
 
 # Greedy Algorithm
 

@@ -91,7 +91,6 @@ when you get to the last row create a new row at the bottom%%
 b)
 because it increases the size everytime it is full the data structure ensures   there is always space for the new n + 1 values. 
 
-
 c)
 To create a new one, it would initialise  2 arrays, one within the other, which would take O(1) time for the first O(1) time for the second, which results in O(1) time
 
@@ -139,20 +138,18 @@ def swapping_trees(S, T):
 ```
 
 b)
-for the algorithm to be correct, every value inside swapping sequence must be a tree
-this can be proven by defining a tree then induction
+- for the algorithm to be correct, every value inside swapping sequence must be a tree
+	- this can be proven by defining a tree then induction
+	- by adding an edge, it means that the tree is no longer a minimum spanning tree, and because every vertice is connected, that means that there must be another route to a vertex that has already been connected in the tree. This breaks the cycle property that minimum spanning trees have, meaning we are able to remove an edge, that is part of a newly created cycle.
+	- To save time, you remove the edge that isnt a part of S/T, this restores the cycle and cut edge property to the Rth tree
+	- By doing this every time you ensure a minimum spanning tree in each value of R
 
-by adding an edge, it means that the tree is no longer a minimum spanning tree, and because every vertice is connected, that means that there must be another route to a vertex that has already been connected in the tree. This breaks the cycle property that minimum spanning trees have, meaning we are able to remove an edge, that is part of a newly created cycle.
-
-To save time, you remove the edge that isnt a part of S/T, this restores the cycle and cut edge property to the Rth tree
-
-By doing this every time you ensure a minimum spanning tree in each value of R
-
-value Ri and Ri+1 must be one swap away from each other
-swapping is to remove and add a new value to the trees. This is done in every iteration
-
-the value at the beginning must be T, and the end result of swapping sequence must be S
-$S  = S / T \cup T \cap S$
+- value Ri and Ri+1 must be one swap away from each other
+	- swapping is to remove and add a new value to the trees. This is done in every iteration
+- the value at the beginning must be T, and the end result of swapping sequence must be S
+	- if all edges from S/T are added
+	- and everything from T/S is removed
+	- what you have left is S
 
 c) Analyze the time complexity of your algorithm.
 
