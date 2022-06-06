@@ -23,7 +23,6 @@ $f(n) =O(1)$
 first calculate $n^{\log_b a}$ to find if it is > than f(n) = to f(n) or < than f(n), and thus find the case
 $n^{\log_b a} = n^{\log_2 1}= n^0 = 1$
 
-
 **MASTER THEORUM**
 
 **Case 1:** $f(n) < n^{\log_b a}$                   AKA           $f(n) = O(n^{\log_b a - \epsilon})$ for $\epsilon > 0$
@@ -99,6 +98,22 @@ b)
 - create(): creates a 1 × 1 matrix where a1,1 = 0. 
 - set/get(i, j): set or get the value of the entry ai,j.
 - increase-size: If the current size of the matrix is n × n, increase it to n +1× n +1 such that the new entries are set of 0. In other words, A becomes A ′ such that a ′ i,j = ai,j if 1 ≤ i, j ≤ n, and a ′ i,j = 0 otherwise.
+
+CLAIM: this dynamic matrix will maintain the invariant, that if x = $a[i][j]$ then after increasing the size, x will still be $a[i][j]$
+
+when increase size occurs, it creates a new array of length n + 1. and transfer all the other array pointers to this new array. this ensures that nothing in the previous arrays have been changed.
+
+say if we had an array of size n x n. in i,j we had the value x.
+the pointer array will look like
+
+[p0,p1,p2 ..., p(n - 2), p(n - 1)]
+
+each pointer p value pointing to an array of size k\*2 + 1. and x would be inside some p\[i]\[j] or p\[j]\[i+ j]
+
+increasing the size will change the pointer array to 
+[p0,p1,p2 ..., p(n - 2), p(n - 1), pn]
+
+meaning that the x value will still be as it was before
 
 c)
 allocating a single space should take O(1) time

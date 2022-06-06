@@ -1,4 +1,4 @@
-# ADT
+# ADT and Data Structures
 Abstract data types are used to represent more a concept or an idea, with no regard for implementation
 
 Say, using a stack. a stack is an abstract type because it has the idea of popping and pushing. but it doesnt say how to implement it. because it can be implemented in many ways. like using arrays that change size, or it can use a linked list that tracks where the head is currently. 
@@ -6,6 +6,11 @@ Say, using a stack. a stack is an abstract type because it has the idea of poppi
 **A data structure** is a concrete representation of data, and this is from the point of view of an implementer, not a user
 
 most of the time, using a linked list is doubly linked
+
+## Proving correctness
+When proving correctness for a data structure it best to use an invariant that the data structure will always hold and keep true no matter what happens.
+
+Normally i go through all of the functions the data structure will have and choose arbitrary values as the parameters. and show how the invariant still holds even when performing these functions. Going case by case for each function and thinking of every possible way the data structure will respond to it, BUT the numbers must be arbitrary. Otherwise you would be trying to prove correctness by giving examples which will not work.
 
 # Trees
 a tree is a graph that is connected and has no cycles
