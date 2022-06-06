@@ -153,6 +153,9 @@ def DFS(s):
 
 ### Breadth First Search (BFS)
 Explores the graph through layers, explores each level and goes one deeper until they have all been exhausted. 
+
+O(n + m)
+
 ![[Breadth-First-Search-Algorithm.gif]]
 
 ![[Pasted image 20220603130610.png]]

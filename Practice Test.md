@@ -70,35 +70,51 @@ a) and b)
 
 ## Problem 3
 
-a)
-Create: simply allocate space for 1 element, and allocate space inside that. both operations take O(1)
+![[Pasted image 20220606192934.png]]
 
-Get: would also simply access the valye stored at a\[i]\[j]
+create would simply allocate space for the 1x1 element
 
-the array would keep track of the size it needs to be in, i.e. n wide and n long
-it would also keep track of the actual size of the array length
+set/get. i, j. to get the index, 
+if i > j youd have to add the index. to get it
 
-increase size: 
-if the n value is greater than the actual size of the array, then square the array length 
+```python
 
-when its doubled you need to fill in the values from the old row
+def get(i, j):
+	# accessing the row (which colour/layer you are trying to take elements from)
+	
+	if i >= j:
+		return matrix[i][j]
+	if j > i:
+		#because when you try to access the element, it "wraps around" and thus you need to skip over the initial row elements to get to the one you want
+		return matrix[j][j + i]
+```
 
-when you get to the last row create a new row at the bottom
+then to expand the array, you would copy all of the elements from the pointer array into a new array with n + 1 spaces. 
 
-%%for each row of values, create a new row that has n+1 size. and move the elements inside the row to the new n + 1 row 
-when you get to the last row create a new row at the bottom%%
+then in that newest space, allocate memory the size of nx2 + 1. 
 
-b)
-because it increases the size everytime it is full the data structure ensures   there is always space for the new n + 1 values. 
+set the new n to be n + 1
+
+b) 
+- create(): creates a 1 × 1 matrix where a1,1 = 0. 
+- set/get(i, j): set or get the value of the entry ai,j.
+- increase-size: If the current size of the matrix is n × n, increase it to n +1× n +1 such that the new entries are set of 0. In other words, A becomes A ′ such that a ′ i,j = ai,j if 1 ≤ i, j ≤ n, and a ′ i,j = 0 otherwise.
 
 c)
-To create a new one, it would initialise  2 arrays, one within the other, which would take O(1) time for the first O(1) time for the second, which results in O(1) time
+allocating a single space should take O(1) time
 
-Accessing variables within an array takes O(1) time. (simply pointer addition) accessing an array within an array would also take O(1) time. in total that is O(1) time
+set/getting is an if else statement with O(1)operations inside, so it would take O(1) time
 
-creating a larger row of size n + 1, would take O(1) time, this is done O(n + 1) times (for the new height of the dynamic matrix). if the total size of the matrix is n, then looping through and moving every element from the original matrix to the new one would take n. (because you are going through every element in the matrix) 
+to create a new pointer array, that holds the addresses to the other arrays, it would take O(1) time
 
-total time = O(n + 1) + O(n)
+then to move all the pointers to that new array you would need to loop through the old length n, taking O(n) time
+
+to create a new array that will take O(1) time
+
+to get that pointer to the new array and put it in the pointers list, it will take O(1)
+
+total time = 5O(1) + O(n)
+total time = O(n)
 
 ## Problem 4
 a)
