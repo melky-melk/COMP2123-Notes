@@ -15,6 +15,7 @@ Normally i go through all of the functions the data structure will have and choo
 # Trees
 a tree is a graph that is connected and has no cycles
 
+
 ## Terminology
 
 - to make things easier, all the leaves will have 2 children that will be null
@@ -34,21 +35,49 @@ a tree is a graph that is connected and has no cycles
 | path                | sequence of nodes that would lead from one to another                        |
 | forest              | a bunch of trees together, unconnected from other trees                                                                           |
 
-## Traversals
-![[Pasted image 20220602202802.png]]
+## Binary tree Traversals
+a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.
+
+where the left child is lesser than (or equal to in some cases) the parent and the right child is greater than the parent
+
+```python
+
+def find_vertex(current_vertex, u):
+	if current_vertex == u:
+		return u
+	
+	if current_vertex == NULL
+		find_vertex(current_vertex.right)
+		find_vertex(current_vertex.left)
+```
 
 ### Preorder Traversal Example
 keeps following a path to attempt to going to the left untill it cannot left anymore
 ![[Preorder-traversal.gif]]
-**explores the left subtree first, then the right** 
+**explores the left subtree first, then the right goes to the left as much as possible** 
 
 - keeps following a path to attempt to going to the left untill it cannot left anymore
 - in that case it would go back up to its parent and go to the right
 - in the case where there is no more to be traversed it would go all the way up
 
+```python
+def pre_order(current_node, visited):
+	if current_node != NULL
+		visited.add(current_node)
+		visited.add(pre_order(current_node->left, visited))
+		visited.add(pre_order(current_node->right, visited))
+```
+
 ### Postorder Traversal
 will always try to get the left most element if possible
 ![[Postorder-traversal.gif]]
+```python
+def post_order(current_node, visited):
+	if current_node != NULL
+		visited.add(post_order(current_node->left, visited))
+		visited.add(post_order(current_node->right, visited))
+		visited.add(current_node, visited)
+```
 
 ### Inorder Traversal
 left, parent, right.
@@ -56,7 +85,13 @@ this will be in ascending order in a binary tree
 
 ![[Inorder-traversal.gif]]
 
-![[Pasted image 20220602204222.png]]
+```python
+def inorder(current_node, visited):
+	if current_node != NULL
+		visited.add(inorder(current_node->left))
+		visited.add(current_node)
+		visited.add(inorder(current_node->right))
+```
 
 to find an element within a binary search tree, you compare the value of the node to the value you are searching for, if it is more than, then go to the right, if it is less than then go to the left
 
