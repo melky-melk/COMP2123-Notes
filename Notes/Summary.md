@@ -15,7 +15,6 @@ Normally i go through all of the functions the data structure will have and choo
 # Trees
 a tree is a graph that is connected and has no cycles
 
-
 ## Terminology
 
 - to make things easier, all the leaves will have 2 children that will be null
@@ -34,6 +33,69 @@ a tree is a graph that is connected and has no cycles
 | edge                | pair of nodeswhere one is a parent of another                                |
 | path                | sequence of nodes that would lead from one to another                        |
 | forest              | a bunch of trees together, unconnected from other trees                                                                           |
+
+
+## Heaps
+A heap is a binary tree storing (key, value) items at its nodes, satisfying the following properties:
+
+1. Heap-Order: for every node m ≠ root, key(m) >= key(parent(m)) 
+2. Complete Binary Tree: let h be the height 
+	- every level i < h is full (i.e., there are 2i nodes) 
+	- remaining nodes take leftmost positions of level h
+
+mainly used for priority queues.
+
+they contain the max or min value is the root of the tree, they are NOT like binary trees, because the left value can be greater than the parent
+
+just **as long as the parent is smaller than children** (or larger in the case of a max heap)
+
+The last node is the rightmost node of maximum depth
+
+## Retaining log(n) height
+
+Restore heap-order property by swapping keys along upward path from insertion point
+Complexity: O(log n) time because the height of the heap is log n
+
+```python
+def up_heap(z): 
+	while z ≠ root and key(parent(z)) > key(z) do 
+		swap key of z and parent(z) 
+		z ← parent(z)
+```
+
+in this example the newest inserted node would go to the bottom then switch
+![[Pasted image 20220608130207.png]]
+
+Restore heap-order property by swapping keys along downward path from the root
+```python
+def down_heap(z): 
+	while z has child with key(child) < key(z) do 
+		x ← child of z with smallest key 
+		swap keys of x and z 
+		z ← x
+```
+
+when there is a node from the top that is removed. first get the last node inserted? then make that the top and keep switching 
+![[Pasted image 20220608130618.png]]
+
+![[Pasted image 20220608130147.png]]
+
+### AVL Tree
+AVL trees are rank-balanced trees, where r(v) is its height of the subtree rooted at v
+
+- Let w be location of newly inserted node 
+- Let z be lowest ancestor of w, whose children ***heights*** differ by 2 (their subtrees would differ)
+- Let y be the child of z that is ancestor of w (taller child of z, the one with a bigger depth/larger subtree)
+- Let x be child of y that is ancestor of w
+
+![[Pasted image 20220608131603.png]]
+
+![[Pasted image 20220608131453.png]]
+![[Pasted image 20220608131533.png]]
+![[Pasted image 20220608132341.png]]
+![[Pasted image 20220608132350.png]]
+
+
 
 ## Binary tree Traversals
 a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.
@@ -101,13 +163,32 @@ when inserting you do the same, and follow the path
 Hash functions try to create a number as random as possible so it can insert it into an array with as little collision a possible. they wrap around using modulo. the array should be pretty big 
 
 linear chaining top, probing bottom
-![[Pasted image 20220602211654.png]]
+
+![[Pasted image 20220608133355.png]]
 
 **in case of collision**
 - Seperate chaining is when you have a collision you add another value to the same position worst case is O(n) if everything is put in the same
 - linear probing is getting to the next empty spot to be inserted
 - cuckoo hashing
 
+### Cuckoo hashing
+- Use two hash tables, T1 and T2, each of size N 
+- Use two hash functions, h1 and h2, for T1 and T2 respectively 
+- For an item with key k, there are only two possible places where we are allowed to store the item: T1[h1(k)] or T2[h2(k)] 
+- This restriction, simplifies lookup dramatically, while still allowing worst-case O(1) running time for get and remove.
+
+you can see that every value in T1, has a second hashing/pointer value in T2. so if there is a collilsion, it ejects the old values and put it in the T2 value. the new value is put in the T1 
+![[Pasted image 20220608134904.png]]
+
+in this case, there is a function in 2 which points to 10 which goes to T2, which would point back to T1
+![[Pasted image 20220608135148.png]]
+
+Eviction cycle or infinite loops
+![[Pasted image 20220608135517.png]]
+
+if a loop is detected, it would rehash all of the functions? which is somehow still O(1)
+
+to search for a value 10, you would search where it is in the first hash table, if its not there you go to the next hashtable
 # Graphs 
 
 | Term                        | Definition                                               |

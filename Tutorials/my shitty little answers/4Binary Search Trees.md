@@ -69,8 +69,17 @@ Since the algorithm takes O(1) time per level of the tree it visits, the total r
 
 **Problem 7**. Consider the following operation on a binary search tree: median() that returns the median element of the tree (the element at position ⌊n/2⌋ when considering all elements in sorted order). Give an implementation that runs in O(h), where h is the height of the tree. You are allowed to augment the insertion and delete routines to keep additional data at each node.
 
+We can augment the nodes in our binary search trees with a size attribute. For a node u, u.size is the number of nodes in the subtree rooted at u. When inserting a new key at some node w, we only need to increase by 1 the size of ancestors of w, which takes O(h) time. Similarly, when we delete a node w with at least one external child, we only need to decrease by 1 the size of ancestors of w. Hence, the insertion and deletion times remain the same. 
 
+you make all nodes keep a size attribute. for every node in the tree, you have the size of the subtree rooted at u. 
+
+whenever something is inserted, you would increase the size 1 to the nodes as are traversing. (or you would calculate it upwards) after you have already inserted it. Similarly you would delete and deduct the size
+
+We implement a more powerful operation called position(k), which returns the kth key (in sorted order) stored in the tree. When searching for the kth element at some node u, we check if u.left.size ≥ k in which case we know that the kth element is in the left subtree and we search for the kth key in u.left. Otherwise, if u.left.size = k − 1, the kth key is at the root u. Finally, if u.left.size < k − 1, then we know that the kth element is in the right subtree, so we search for the (k − u.left.size − 1)th key there, i.e., k minus the number of nodes smaller than the root of u.right.key. 
+
+????
+
+The complexity is O(h) because we do O(1) work at each node and we only traverse one path from the root to the element we are searching for.
 
 **Problem 8**. Consider the following binary search tree operation: remove all(k1, k2) that removes from the tree any key k ∈ [k1, k2]. Give an implementation of this operation that runs in O(h + s) where h is the height of the tree and s is the number of keys we are to remove.
-
 

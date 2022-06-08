@@ -10,9 +10,11 @@
 
 assuminbg being the min-heap sort being
 
-{5,4,3,2,1}
+{9,8,7,6,5,4,3,2,1}
 
+in this case, every time a new element is added, it will need to traverse log(n) (max, because of the way the heap is) to go down the height of the tree everytime something is added. and would need to restore its AVL property every time something new is inserted, log(n) * n
 
+then to return the heap, it would need to pop every integer off, which would take n time
 
 **Problem 4**. Given an array A with n integers, an inversion is a pair of indices i < j such that A[i] > A[j]. Show that the in-place version of insertion-sort runs in O(n + I) time where I is the total number of inversions.
 
