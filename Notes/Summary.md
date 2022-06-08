@@ -166,12 +166,32 @@ linear chaining top, probing bottom
 
 ![[Pasted image 20220608133355.png]]
 
-**in case of collision**
-- Seperate chaining is when you have a collision you add another value to the same position worst case is O(n) if everything is put in the same
-- linear probing is getting to the next empty spot to be inserted
-- cuckoo hashing
+## Collisions
+- **Seperate chaining** is when you have a collision you add another value to the same position worst case is O(n) if everything is put in the same
+- **linear probing** is getting to the next empty spot to be inserted
+- **cuckoo hashing** is using 2 hashtables and 2 hash functions (explained more later)
+
+The time complexity for seperate chaining and linear probing is
+
+| Function | Expected Case | Worst Case |
+| -------- | ------------- | ---------- |
+| Search   | O(1)          | O(n)       | 
+| Insert   | O(1)          | O(n)       | 
+| Delete   | O(1)          | O(n)       | 
+
+because in the very small case where every single value is collided with each other, it would need to traverse through all the previous ones to get to where it wants. 
+
+(off the book but i think for seperate chaining you could keep all the collided values as a stack, and push a new one onto the stack, which would take O(1) instead)
 
 ### Cuckoo hashing
+often takes much longer than linear probing or seperate chaining but is guarenteed to have O(1) lookup and insertion
+
+| Function | Expected Case | Worst Case |
+| -------- | ------------- | ---------- |
+| Search   | O(1)          | O(1)       |
+| Insert   | O(1)          | O(1)       |
+| Delete   | O(1)          | O(1)       |
+
 - Use two hash tables, T1 and T2, each of size N 
 - Use two hash functions, h1 and h2, for T1 and T2 respectively 
 - For an item with key k, there are only two possible places where we are allowed to store the item: T1[h1(k)] or T2[h2(k)] 
@@ -189,6 +209,7 @@ Eviction cycle or infinite loops
 if a loop is detected, it would rehash all of the functions? which is somehow still O(1)
 
 to search for a value 10, you would search where it is in the first hash table, if its not there you go to the next hashtable
+
 # Graphs 
 
 | Term                        | Definition                                               |
@@ -214,6 +235,9 @@ to search for a value 10, you would search where it is in the first hash table, 
 ## Implementation
 
 ### Adjacency List
+
+![[Pasted image 20220608141211.png]]
+
 Additionally each vertex keeps a sequence of edges incident on it. Edge objects keep reference to their position in the incidence sequence of its endpoints
 
 ```c
@@ -234,11 +258,12 @@ struct edge{
 }
 ```
 
-![[Pasted image 20220603124821.png]]
 ### Adjacency Matrix
 A 2D array that stores the edges as such
 
-![[Pasted image 20220603124846.png]]
+![[Pasted image 20220608141229.png]]
+
+![[Pasted image 20220608141239.png]]
 
 ## Graph Traversals
 assume you are given the adjacency list representation
@@ -278,8 +303,6 @@ Explores the graph through layers, explores each level and goes one deeper until
 O(n + m)
 
 ![[Breadth-First-Search-Algorithm.gif]]
-
-![[Pasted image 20220603130610.png]]
 
 ## Weighted Graphs
 
@@ -381,8 +404,6 @@ so assume you are at the very last step of the algorithm, what do you need to do
 - because you run the inductive hypothesis smaller ones and those have already worked if you were to apply those to the result you currently have to create something bigger it should still work?
 
 ## Master Theorum
-
-![[Pasted image 20220604144348.png]]
 
 $T(n) = aT(n/b) + O(1)$ 
 
