@@ -1,5 +1,5 @@
 /*
-an attempt at implementing the 
+an attempt at implementing the question 3 from the practice exam (just to see what it looks like)
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,4 +65,6 @@ int main(int argc, char** argv){
 	set(my_matrix->pointer_array, 0, 1, 1);
 	printf("%d\n", get(my_matrix->pointer_array, 0,1));
 	printf("%d\n", get(my_matrix->pointer_array, 0,0));
+	free_matrix(my_matrix);
+	return 0;
 }
