@@ -95,8 +95,6 @@ AVL trees are rank-balanced trees, where r(v) is its height of the subtree roote
 ![[Pasted image 20220608132341.png]]
 ![[Pasted image 20220608132350.png]]
 
-
-
 ## Binary tree Traversals
 a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.
 
@@ -212,15 +210,17 @@ to search for a value 10, you would search where it is in the first hash table, 
 
 # Graphs 
 
-| Term                        | Definition                                               |
-| --------------------------- | -------------------------------------------------------- |
-| endpoints                   | the vertexes the edges are connecting                    |
-| incident                    | the edges that are connected to a vertex                 |
-| adjacent vertexes/neighbour | vertexes that are connected to each other                |
-| degree                      | number of edges a vertex has                             |
-| parallel edges              | when there are 2 edges that connect to the same vertexes |
-| self loop                   | when it loops on itself                                  |
-| simple                      | no parallel or self loops                                                         |
+| Term                        | Definition                                                                                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| endpoints                   | the vertexes the edges are connecting                                                                                                                                                |
+| incident                    | the edges that are connected to a vertex                                                                                                                                             |
+| adjacent vertexes/neighbour | vertexes that are connected to each other                                                                                                                                            |
+| degree                      | number of edges a vertex has                                                                                                                                                         |
+| parallel edges              | when there are 2 edges that connect to the same vertexes                                                                                                                             |
+| self loop                   | when it loops on itself                                                                                                                                                              |
+| simple                      | no parallel or self loops                                                                                                                                                            |
+| cut edge                    | In a connected graph G=(V, E), we say that an edge (u, v) in E is a cut edge if (V, E \ {(u, v)}) is not connected. Essentially if you remove that edge it wont be connected anymore |
+
 
 **directed graphs**
 
@@ -261,11 +261,19 @@ struct edge{
 ### Adjacency Matrix
 A 2D array that stores the edges as such
 
+the rows represent all of the edges going out of the vertex
+columns represent all edges coming into the vertex
+
 ![[Pasted image 20220608141229.png]]
+
+![[Pasted image 20220610143502.png]]
 
 ![[Pasted image 20220608141239.png]]
 
 ## Graph Traversals
+
+time complexity for most traversals are O(V + E). where v is the number of vertexes and e is the number of edges
+
 assume you are given the adjacency list representation
 
 A systematic and structured way of visiting all the vertices and all the edges of a graph
@@ -300,8 +308,6 @@ def DFS(s):
 ### Breadth First Search (BFS)
 Explores the graph through layers, explores each level and goes one deeper until they have all been exhausted. 
 
-O(n + m)
-
 ![[Breadth-First-Search-Algorithm.gif]]
 
 ## Weighted Graphs
@@ -326,6 +332,12 @@ if the current weight is less than the new weight, then change the parent
 
 **To calculate the actual smallest weight *OVERALL* then you use these algorithms**
 
+Using a heap for PQ, Dijkstra runs in O(m log n) tim
+
+if you use a fibonnacci heap for the priority queue you can get the decrease key and updating priority in O(1) expected. 
+
+O(m + n log n) 
+
 ### Smallest weight overall
 
 #### Prim's algorithm
@@ -340,6 +352,14 @@ IT GOES DOWN A PATH OF VERTICIES AND DECIDES WHICH ONE IT SHOULD GO TO ***NEXT**
 
 ![[Prim-animation.gif]]
 
+similar to dijkstra
+
+Using a heap for PQ, Dijkstra runs in O(m log n) tim
+
+if you use a fibonnacci heap for the priority queue you can get the decrease key and updating priority in O(1) expected. 
+
+O(m + n log n) 
+
 #### Kruskal's algorithm
 always pick the smallest edge
 keep adding edges untill all verticies are added to the MST
@@ -349,7 +369,11 @@ IT PICKS THE SMALLEST EDGE WEIGHT REGARDLES OF WHERE THE ALGORITHM IS, IT DOESNT
 
 ![[Pasted image 20220602124245.png]]
 ![[kruskal-animation.gif]]
+Sorting edges takes O(m log m) time
 
+One option is to run DFS in each iteration to see if the number of connected components stays the same. This leads to O(m n) time for the main loop
+
+Kruskal’s algorithm would run in O(n^2) time after the edge weights are sorted.
 
 # Minimum Spanning Trees
 Minimum spanning trees are trees that have the least amount of edges possible
@@ -361,6 +385,10 @@ Minimum spanning trees are trees that have the least amount of edges possible
 - **Cycle property**
 	- if a tree has a cycle it is not a minimum spanning tree
 	- **EXPLAINATION:** if there is a cycle this means there is more than 1 way to get to a certain node, and if this is true that means it doesnt take the most efficient route (doesnt use the least number of edges to get to the tree)
+
+![[Pasted image 20220610152940.png]]
+
+For down&up, we're trying to compute the highest level a vertex can reach by going down 0 or more edges and then coming back up using a single edge. For A, B and D, they can all traverse down to C and take that edge up to bring it back to level 0. In the case of C, since it's at the bottom, we can't move any further down but what we can do is take that back edge up to A, bringing it to the highest level :)
 
 # Greedy Algorithm
 A greedy algorithm constructs the solution in a greedy fashion, so after every element it processes, it makes some irrevocable choice (typically add or not add the processed element or something similar to that). 
@@ -404,6 +432,7 @@ so assume you are at the very last step of the algorithm, what do you need to do
 - because you run the inductive hypothesis smaller ones and those have already worked if you were to apply those to the result you currently have to create something bigger it should still work?
 
 ## Master Theorum
+![[Pasted image 20220610151728.png]]
 
 $T(n) = aT(n/b) + O(1)$ 
 

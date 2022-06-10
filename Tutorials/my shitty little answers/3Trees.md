@@ -106,3 +106,4 @@ def calculate_balance_factor(node, current_level):
 
 
 **Problem 10** For any pair of nodes in a tree there is a unique simple path (one that does not repeat vertices) connecting them. Design a linear time algorithm that finds the longest such path in a tree.
+
