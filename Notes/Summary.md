@@ -463,3 +463,27 @@ which means:
 
 $T(n) = O(n)$
 
+1.  designing algos, running time analysis the past assignments and tutorial work is ur best bet
+    you answer 4 question and its 60 marks total
+    
+    worth 60% of your mark, every point on the exam is 1 point on your grade
+    extra upload time is given. should start uploading 15 mins
+    DO NOT HANDWRITE YOUR ANSWERS
+    USE OBSIDIAN LIKE NORMAL
+    make pdf copies of all the lecture slides (edited)
+    cannot use google, it is not proctored but you cannot use googke
+    needs to be scannable by turnitin
+    start submission with student id not name
+    setup exam document beforehand
+    anything proven or meantioned in the lecture will not need to be proved again
+    if you want to use the time it takes to insert a vertex into an adjacency matrix, you can quote the slides on that and use it. you dont need to argue that complexity
+    essentially an assignment with a time limit and no internet :/
+    say the thing "from the lectures slides" you dont need to reference the actual slide name
+    given a data structure from a lectures, and given an instance?
+    problem 2 you dont need to EXPLAIN what it is doing, just say the answer
+    if you ask to do something, in constant time, you most likely need to track something so you can return it easily
+    the running time will help shape your answer
+    can read all questiosn first before starting
+    start with easy
+    start with outline with bullet points for your questions, dont worry too much about writing full sentences
+    dont be too scared if you did decent on the assignments the exam will be fine
