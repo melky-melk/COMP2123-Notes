@@ -420,6 +420,7 @@ essentially to do it is to assume that the "recursion fairy" (the recursion fair
 
 so assume you are at the very last step of the algorithm, what do you need to do to return the FINAL answer. 
 
+
 ## Proving Correctness
 
 **Inductive hypothesis:** what is the leap of faith you are taking? what are you assuming the "recursion fairy" returns
@@ -434,7 +435,13 @@ so assume you are at the very last step of the algorithm, what do you need to do
 ## Master Theorum
 ![[Pasted image 20220610151728.png]]
 
-$T(n) = aT(n/b) + O(1)$ 
+the number in front of the T(n/2) is how many subproblems you have
+
+the inside of T(), is what you are doing to the original input. e.g. when it is T(n/2) you are dividing the problem by hald each time
+
+The O() is the combine step, low long it takes to combine the subproblems together. 
+
+$T(n) = aT(n/b) + O(f(n))$ 
 
 $T(n) = T(n/2) + O(1)$ 
 
